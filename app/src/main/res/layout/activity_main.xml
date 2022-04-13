@@ -14,7 +14,7 @@
         android:layout_marginTop="74dp"
         android:layout_marginEnd="125dp"
         android:layout_marginBottom="22dp"
-        android:text="Create Lobby"
+        android:text="@string/create_lobby"
         app:layout_constraintBottom_toTopOf="@+id/joinLobbyButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:layout_marginTop="22dp"
         android:layout_marginEnd="125dp"
         android:layout_marginBottom="153dp"
-        android:text="Join Lobby"
+        android:text="@string/join_lobby"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,5 +48,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/portfolioslogos_02"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        android:contentDescription="@string/logo_for_liars_dice" />
 </androidx.constraintlayout.widget.ConstraintLayout>
