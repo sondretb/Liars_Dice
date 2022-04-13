@@ -38,6 +38,16 @@ public class MainActivity extends AppCompatActivity implements Observer, View.On
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()){
+            case (R.id.createLobbyButton):
+                model.createLobby();
+                break;
+
+            case (R.id.joinLobbyButton):
+                model.connectToLobby();
+                break;
+            }
+
 
     }
 }

@@ -10,11 +10,13 @@ public class MainMenuModel extends Observable{
 
     }
 
-    protected void connectToLobby(){    //could take lobbyConnectInfo as argument
+    public void connectToLobby(){    //could take lobbyConnectInfo as argument
         //TODO: add multiplayer module logic (function could return the a GameModel for the lobby)
+        System.out.println("*Connect To server form*");
     }
-    protected void createLobby(){ //could take lobbyCreateInfo as argument
+    public void createLobby(){ //could take lobbyCreateInfo as argument
         //TODO: add multiplayer model logic (could create a new GameModel)
+        System.out.println("*create server form*");
     }
 
 }
