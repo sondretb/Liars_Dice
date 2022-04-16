@@ -7,6 +7,8 @@ import java.net.URISyntaxException;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 
+
+/* ServerAPI should be a singleton use ServerAPI.getInstance() to initialize instead of new ServerAPI()*/
 public class ServerAPI {
     private static ServerAPI INSTANCE = null;
 
@@ -15,6 +17,7 @@ public class ServerAPI {
     private ServerAPI() {
         connectToServer();
     }
+
 
     public static ServerAPI getInstance() {
         if (INSTANCE == null) {
@@ -37,7 +40,7 @@ public class ServerAPI {
         mSocket.connect();
         return true;
     }
-
+    /* TODO: CreateLobby */
     public boolean createLobby() {
         if (mSocket.connected()) {
             Log.d("creating", "lobby");
@@ -46,6 +49,7 @@ public class ServerAPI {
         return false;
     }
 
+    /* TODO: JoinLobby */
     public boolean joinLobby(String lobbyID) {
         if (mSocket.connected()) {
             Log.d("joining", "lobby: " + lobbyID);
