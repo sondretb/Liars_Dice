@@ -7,11 +7,11 @@ io.on("connection", (): void => {
 })
 
 io.on("CREATE_LOBBY", (): void => {
-   console.log("Someone wants to create a server!");
+   console.log("Someone wants to create a lobby!");
 })
 
 io.on("JOIN_LOBBY", (): void => {
-    console.log("Someone wants to join a server")
+    console.log("Someone wants to join a lobby")
 });
 
 io.listen(3000);

@@ -5,6 +5,9 @@
   "main": "dist/server.js",
   "scripts": {
     "start": "node dist/server",
+    "start:dev": "nodemon",
+    "start:ts-node": "ts-node src/server.ts",
+    "build": "tsc",
     "lint": "eslint . --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +19,8 @@
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
     "eslint": "^8.13.0",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
   },
   "dependencies": {
