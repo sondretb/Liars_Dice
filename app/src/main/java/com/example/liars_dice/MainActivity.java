@@ -10,7 +10,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import com.example.liars_dice.model.MainMenuModel;
-import java.util.Observer;
 
 public class MainActivity extends AppCompatActivity implements Observer, View.OnClickListener{
     private MainMenuModel model;
@@ -21,11 +20,10 @@ public class MainActivity extends AppCompatActivity implements Observer, View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         this.model = new MainMenuModel();
         model.addObserver(this);
-        this.joinLobbyButton = (Button) findViewById(R.id.joinLobbyButton);
-        this.createLobbyButton = (Button) findViewById(R.id.createLobbyButton);
+        this.joinLobbyButton = findViewById(R.id.joinLobbyButton);
+        this.createLobbyButton = findViewById(R.id.createLobbyButton);
         this.joinLobbyButton.setOnClickListener(this);
         this.createLobbyButton.setOnClickListener(this);
 
