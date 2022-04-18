@@ -5,24 +5,28 @@ import com.example.liars_dice.model.game.Bet;
 import com.example.liars_dice.model.game.Player;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Observable;
 
 public class GameModel extends Observable{
-    public GameModel(int playerAmount, Collection<Player> playersJoining){
+    private GameTable gameTable;
+    private HashMap<String, Boolean> ruleMap;   //for the rules chosen in lobby creation
+
+
+    public GameModel(int playerAmount, Collection<Player> playersJoining){          // how players sre added to the model could change depending on how the lobby is implemented
         gameTable = new GameTable(playerAmount);
         for (Player player:
              playersJoining) {
             gameTable.addPlayer(player);
         }
     }
-    private GameTable gameTable;
 
     public void setBet(int diceValue, int diceAmont){
         gameTable.getPlayerInTurn().setBet(diceValue, diceAmont);
         gameTable.nextTurn();
     }
 
-    public Boolean callLie(){
+    public Boolean callLie(){       //might change to a wasLie() and handleResult(Boolean wasLie) function instead
         Bet lastBet = gameTable.getStandingBet();
         Player loosingPlayer;
         Boolean wasLie = lastBet.getBetAmount() < gameTable.countDice(lastBet.getBetValue());
@@ -36,6 +40,7 @@ public class GameModel extends Observable{
         loosingPlayer.removeDice();
         if (loosingPlayer.isDead()){
             gameTable.nextTurn();
+            gameTable.removePlayer(loosingPlayer);
         }
         else{
             gameTable.setTurn(loosingPlayer);
