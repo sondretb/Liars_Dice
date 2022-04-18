@@ -28,4 +28,34 @@ public class GameTable {
     public Bet getStandingBet(){
         return players.get((turnIndex-1)%players.size()).getLastBet();
     }
+
+    public int countDice(int diceInQuestion){
+        int diceCounted = 0;
+        for (Player player:
+             players)
+            diceCounted += player.countDiceOfValue(diceInQuestion);
+        return diceCounted;
+    }
+    public void removePlayer(Player player){
+        players.remove(player);
+        
+    }
+
+    public void rerollAll(){
+        for (Player player :
+                players) {
+            player.rollDice();
+        }
+    }
+
+    public Player lastPlayer() {
+        return players.get((turnIndex-1)%players.size());
+    }
+    
+    public void clearBets(){
+        for (Player player :
+                players) {
+            player.clearBet();
+        }
+    }
 }
