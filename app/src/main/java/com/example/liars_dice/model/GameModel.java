@@ -8,12 +8,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Observable;
 
-public class GameModel extends Observable{
+public class GameModel extends Observable{          //might merge GameTable and GameModel, and make the GameTable functions private.
     private GameTable gameTable;
     private HashMap<String, Boolean> ruleMap;   //for the rules chosen in lobby creation
 
 
-    public GameModel(int playerAmount, Collection<Player> playersJoining){          // how players sre added to the model could change depending on how the lobby is implemented
+    public GameModel(int playerAmount, Collection<Player> playersJoining){          // how players are added to the model could change depending on how the lobby is implemented
         gameTable = new GameTable(playerAmount);
         for (Player player:
              playersJoining) {

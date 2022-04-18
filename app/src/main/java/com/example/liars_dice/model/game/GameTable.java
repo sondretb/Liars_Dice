@@ -29,7 +29,7 @@ public class GameTable {
         return players.get((turnIndex-1)%players.size()).getLastBet();
     }
 
-    public int countDice(int diceInQuestion){
+    public int countDice(int diceInQuestion){           //must be changed in order to support Modifiability of optional game rules
         int diceCounted = 0;
         for (Player player:
              players)
@@ -38,7 +38,6 @@ public class GameTable {
     }
     public void removePlayer(Player player){
         players.remove(player);
-        
     }
 
     public void rerollAll(){
