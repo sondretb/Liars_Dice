@@ -13,16 +13,16 @@ public class GameModel extends Observable{          //might merge GameTable and 
     private HashMap<String, Boolean> ruleMap;   //for the rules chosen in lobby creation
 
 
-    public GameModel(int playerAmount, Collection<Player> playersJoining){          // how players are added to the model could change depending on how the lobby is implemented
-        gameTable = new GameTable(playerAmount);
-        for (Player player:
+    public GameModel(int playerAmount, Collection<String> playersJoining, int playerLives){          // how players are added to the model could change depending on how the lobby is implemented
+        gameTable = new GameTable(playerAmount);                                                    // Presuming Names can be an identifier of the players, subject to change.
+        for (String playerName:
              playersJoining) {
-            gameTable.addPlayer(player);
+            gameTable.addPlayer(new Player(playerName, playerLives));
         }
     }
 
-    public void setBet(int diceValue, int diceAmont){
-        gameTable.getPlayerInTurn().setBet(diceValue, diceAmont);
+    public void setBet(int diceValue, int diceAmount){
+        gameTable.getPlayerInTurn().setBet(diceValue, diceAmount);
         gameTable.nextTurn();
     }
 
@@ -53,4 +53,12 @@ public class GameModel extends Observable{          //might merge GameTable and 
         gameTable.rerollAll();
     }
 
+    public int getSmallestLegalBetAmount(int chosenDiceValue) {
+        if (gameTable.getStandingBet().getBetValue() >= chosenDiceValue){
+            return gameTable.getStandingBet().getBetAmount()+1;
+        }
+        else{
+            return gameTable.getStandingBet().getBetAmount();
+        }
+    }
 }
