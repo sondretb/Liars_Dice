@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements Observer, View.On
         this.createLobbyButton = findViewById(R.id.createLobbyButton);
         this.joinLobbyButton.setOnClickListener(this);
         this.createLobbyButton.setOnClickListener(this);
-
     }
 
     @Override
