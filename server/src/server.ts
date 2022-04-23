@@ -1,21 +1,69 @@
 import {Server} from "socket.io";
+import { LobbyManager } from "./models/lobbyManager";
+import { createID } from "./utils";
 
 const io = new Server();
 
-/* connection is a default event when someone connects to the server */
-io.on("connection", (): void => {
-    console.log("Someone connected!");
+const lobbyManager = new LobbyManager(io);
+/*
+io.on("connect", (socket): void => {
+    socket.on("disconnect", () => {
+        console.log("someone disconnected");
+    })
+
+    socket.on("room:create", (args, ack): void => {
+        console.log(`${socket.id} wants to create a room`);
+        // TODO: create room
+        let roomID = createID();
+        while (io.of("/").adapter.rooms.has(roomID)) {
+            roomID = createID()
+        }
+        socket.join(roomID);
+        ack({
+            success: true,
+            message: roomID
+        })
+        console.log(`${socket.id} created room ${roomID}`);
+    })
+
+    socket.on("room:join", (args, ack): void => {
+        const {roomID} = args;
+        console.log(`${socket.id} wants to join room ${roomID}`);
+        if (io.of("/").adapter.rooms.has(roomID)) {
+            socket.join(roomID)
+            ack({
+                success: true,
+                message: ""
+            })
+            console.log(`${socket.id} joined room ${roomID}`);
+            io.to(roomID).emit("room:state")
+        }
+        else {
+            console.log(`no room ${roomID}`);
+            ack({
+                success: false,
+                message: `No room with ${roomID}`
+            })
+        }
+    });
+
+    socket.on("room:state", (args, ack): void => {
+        const {roomID} = args;
+        const players = io.sockets.adapter.rooms.get(roomID)?.values();
+        if (players !== undefined) {
+            ack({
+                success: true,
+                state: {
+                    roomID: roomID,
+                    players: Array.from(players)
+                }
+            })
+        }
+    })
 })
 
-/* CREATE_LOBBY is a custom event emited by the client */
-io.on("CREATE_LOBBY", (): void => {
-   console.log("Someone wants to create a lobby!");
-})
+*/
 
-/* JOIN_LOBBY is a custom event emited by the client */
-io.on("JOIN_LOBBY", (): void => {
-    console.log("Someone wants to join a lobby")
-});
 
 /* 3000 is the port number used by the server */
 io.listen(3000);

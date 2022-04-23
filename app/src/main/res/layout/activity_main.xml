@@ -8,46 +8,58 @@
 
     <Button
         android:id="@+id/createLobbyButton"
-        android:layout_width="161dp"
-        android:layout_height="76dp"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="125dp"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="125dp"
-        android:layout_marginBottom="22dp"
         android:text="@string/create_lobby"
-        app:layout_constraintBottom_toTopOf="@+id/joinLobbyButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/joinLobbyButton" />
 
     <Button
         android:id="@+id/joinLobbyButton"
-        android:layout_width="161dp"
-        android:layout_height="69dp"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="125dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="125dp"
-        android:layout_marginBottom="153dp"
         android:text="@string/join_lobby"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createLobbyButton" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextGameID" />
+
+    <EditText
+        android:id="@+id/editTextGameID"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:ems="10"
+        android:hint="GameID"
+        android:inputType="textPersonName"
+        android:maxLength="5"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="340dp"
         android:layout_height="255dp"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="74dp"
+        android:contentDescription="@string/logo_for_liars_dice"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/createLobbyButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/portfolioslogos_02"
-        tools:visibility="visible"
-        android:contentDescription="@string/logo_for_liars_dice" />
+        tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
