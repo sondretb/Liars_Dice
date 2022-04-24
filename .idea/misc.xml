@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Liars_Dice/app/src/main/res/layout/activity_game.xml" value="0.20018115942028986" />
+        <entry key="..\:/Users/kosec/AndroidStudioProjects/Liars_Dice/app/src/main/res/layout/activity_game.xml" value="0.2552372808892689" />
+        <entry key="..\:/Users/kosec/AndroidStudioProjects/Liars_Dice/app/src/main/res/layout/activity_lobby.xml" value="0.33" />
         <entry key="..\:/Users/kosec/AndroidStudioProjects/Liars_Dice/app/src/main/res/layout/activity_main.xml" value="0.31145833333333334" />
+        <entry key="..\:/Users/kosec/AndroidStudioProjects/Liars_Dice/app/src/main/res/layout/lobby.xml" value="0.16029143897996356" />
+        <entry key="..\:/Users/kosec/AndroidStudioProjects/Liars_Dice/app/src/main/res/layout/recycler_view_item.xml" value="0.4247506799637353" />
         <entry key="..\:/Users/sondr/AndroidStudioProjects/Liars_Dice/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1805" />
         <entry key="..\:/Users/sondr/AndroidStudioProjects/Liars_Dice/app/src/main/res/layout/activity_main.xml" value="0.22" />
       </map>

@@ -1,26 +1,27 @@
 package com.example.liars_dice.model;
-import com.example.liars_dice.ServerAPI;
+
+import com.example.liars_dice.api.ServerAPI;
 
 import java.util.Observable;
 
 public class MainMenuModel extends Observable{
-    //lobbyConnectInfo = new LobbyConnectInfo();
-    //lobbyCreateInfo = new LobbyCreateInfo();
-    private ServerAPI serverAPI;
+    private String gameID;
 
 
     public MainMenuModel() {
-        this.serverAPI = ServerAPI.getInstance();
+        this.gameID = "";
     }
 
-    public void connectToLobby(){    //could take lobbyConnectInfo as argument
-        //TODO: add multiplayer module logic (function could return the a GameModel for the lobby)
-        this.serverAPI.joinLobby("LOBBY_ID");
+    public String getGameID()  {
+        return this.gameID;
     }
 
-    public void createLobby(){ //could take lobbyCreateInfo as argument
-        //TODO: add multiplayer model logic (could create a new GameModel)
-        this.serverAPI.createLobby();
+    public void setGameID(String gameID) {
+        if (gameID.length() <= 5) {
+            this.gameID = gameID;
+            setChanged();
+            notifyObservers();
+        }
     }
 
 }
