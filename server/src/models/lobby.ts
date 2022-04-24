@@ -15,13 +15,10 @@ export class Lobby {
         this.players = new Map<string, LobbyPlayer>();
         this.nsp = this.io.of(`/lobbies/${this.id}`);
         this.nsp.on("connect", socket => {
-            console.log(socket.id + " connected to " + this.id)
-            console.log("lobbyID: ", this.id);
-            console.log("lobbyNSP")
+            console.log(socket.id, " connected")
+
             if (this.players.entries.length < MAX_PLAYERS) {
-                console.log("BEFORE: "+[...this.players.keys()])
                 this.players.set(socket.id, new LobbyPlayer(socket.id));
-                console.log("AFTER: "+[...this.players.keys()])
                 this.emitState();
     
                 socket.on("disconnect", () => {

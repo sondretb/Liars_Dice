@@ -50,14 +50,11 @@ public class MainActivity extends AppCompatActivity implements Observer, View.On
 
         this.createLobbyButton = findViewById(R.id.createLobbyButton);
         this.createLobbyButton.setOnClickListener(this);
-<<<<<<< HEAD
 
         this.editTextGameID = findViewById(R.id.editTextGameID);
         this.editTextGameID.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
 
 
-=======
->>>>>>> 2552d01596ca8e627020f7a63902f522ceaa6149
     }
 
     @Override

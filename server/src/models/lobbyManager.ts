@@ -12,9 +12,9 @@ export class LobbyManager {
         this.io = io;
         this.lobbies = new Map<string, Lobby>();
 
-        const lobbiesNSP = this.io.of("/lobbies");
+        const nsp = this.io.of("/lobbies");
 
-        lobbiesNSP.on("connect", socket => {
+        nsp.on("connect", socket => {
             console.log("somebody connected to the lobbyManager")
             socket.on("disconnect", () => {
                 console.log(`${socket.id} disconnected`);
@@ -26,7 +26,6 @@ export class LobbyManager {
                     id = createID();
                 }
                 this.lobbies.set(id, new Lobby(this.io, id));
-                console.log("lobby created with id "+id);
                 ack({
                     success: true,
                     data: {
