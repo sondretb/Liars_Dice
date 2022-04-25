@@ -1,7 +1,5 @@
 package com.example.liars_dice.model;
 
-import com.example.liars_dice.api.ServerAPI;
-
 import java.util.Observable;
 
 public class MainMenuModel extends Observable{

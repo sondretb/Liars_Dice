@@ -1,4 +1,4 @@
-package com.example.liars_dice.model;
+package com.example.liars_dice.model.lobby;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

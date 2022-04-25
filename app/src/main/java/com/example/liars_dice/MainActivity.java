@@ -13,7 +13,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import com.example.liars_dice.api.LobbyManagerAPI;
-import com.example.liars_dice.api.ServerAPI;
 import com.example.liars_dice.model.MainMenuModel;
 
 import org.json.JSONException;
@@ -53,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements Observer, View.On
 
         this.editTextGameID = findViewById(R.id.editTextGameID);
         this.editTextGameID.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
-
-
     }
 
     @Override

@@ -1,5 +1,83 @@
 package com.example.liars_dice.model;
 
+import com.example.liars_dice.model.game.GamePlayer;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Observable;
+
+public class GameModel extends Observable {
+    private String id;
+    private HashMap<String, GamePlayer> players;
+    private ArrayList<String> turnList;
+    private int currentTurn;
+
+    public GameModel(String id) {
+        this.id = id;
+        this.players = new HashMap<String, GamePlayer>();
+        this.turnList = new ArrayList<String>();
+        currentTurn = 0;
+    }
+
+    public GameModel(
+        @JsonProperty("id") String id,
+        @JsonProperty("players") HashMap<String, GamePlayer> players,
+        @JsonProperty("turnList") ArrayList<String> turnList,
+        @JsonProperty("currentTurn") int currentTurn
+    ) {
+        this.id = id;
+        this.players = players;
+        this.turnList = turnList;
+        this.currentTurn = currentTurn;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public HashMap<String, GamePlayer> getPlayers() {
+        return players;
+    }
+
+    public ArrayList<String> getTurnList() {
+        return turnList;
+    }
+
+    public int getCurrentTurn() {
+        return currentTurn;
+    }
+
+    public void setGameModel(GameModel gameModel) {
+        this.id = gameModel.getId();
+        this.players = gameModel.getPlayers();
+        this.turnList = gameModel.getTurnList();
+        this.currentTurn = gameModel.getCurrentTurn();
+        setChanged();
+        notifyObservers();
+    }
+
+    public GamePlayer getCurrentPlayer() {
+        if (turnList.size() > 0) {
+            String currentPlayerID = this.turnList.get(currentTurn);
+            GamePlayer currentPlayer = this.players.get(currentPlayerID);
+            return currentPlayer;
+        }
+        return null;
+    }
+
+    static public GameModel fromJSON(String json) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        GameModel gameModel = objectMapper.readValue(json, GameModel.class);
+        return gameModel;
+    }
+}
+
+/*
 import com.example.liars_dice.model.game.GameTable;
 import com.example.liars_dice.model.game.Bet;
 import com.example.liars_dice.model.game.Player;
@@ -62,3 +140,4 @@ public class GameModel extends Observable{          //might merge GameTable and 
         }
     }
 }
+*/

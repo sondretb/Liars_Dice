@@ -13,7 +13,7 @@ import com.example.liars_dice.model.game.Dice;
 
 import java.util.ArrayList;
 
-public class HiddenDiceViewAdapter extends RecyclerView.Adapter<HiddenDiceViewAdapter.ViewHolder> {
+public class DiceViewAdapter extends RecyclerView.Adapter<DiceViewAdapter.ViewHolder> {
     private ArrayList<Dice> dice;
 
     public void setDice(ArrayList<Dice> dice) {
@@ -34,7 +34,7 @@ public class HiddenDiceViewAdapter extends RecyclerView.Adapter<HiddenDiceViewAd
         }
     }
 
-    public HiddenDiceViewAdapter(ArrayList<Dice> dice) {
+    public DiceViewAdapter(ArrayList<Dice> dice) {
         this.dice = dice;
     }
 
@@ -48,7 +48,14 @@ public class HiddenDiceViewAdapter extends RecyclerView.Adapter<HiddenDiceViewAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.getTvDiceValue().setText("?");
+            Dice currentDice = this.dice.get(position);
+            if (currentDice != null) {
+                Integer value = currentDice.getValue();
+                holder.getTvDiceValue().setText(value == null ? "?" : value.toString());
+            }
+            else {
+                holder.getTvDiceValue().setText("?");
+            }
     }
 
     @Override

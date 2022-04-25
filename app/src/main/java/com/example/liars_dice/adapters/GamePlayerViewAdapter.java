@@ -6,41 +6,57 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.liars_dice.R;
-import com.example.liars_dice.model.lobby.LobbyPlayerModel;
+import com.example.liars_dice.model.game.Bet;
+import com.example.liars_dice.model.game.Dice;
+import com.example.liars_dice.model.game.GamePlayer;
 
 import java.util.ArrayList;
 
-public class LobbyPlayerViewAdapter extends RecyclerView.Adapter<LobbyPlayerViewAdapter.ViewHolder> {
-    private ArrayList<LobbyPlayerModel> players;
+public class GamePlayerViewAdapter extends RecyclerView.Adapter<GamePlayerViewAdapter.ViewHolder> {
+    private ArrayList<GamePlayer> players;
+    private HiddenDiceViewAdapter hiddenDiceViewAdapter;
 
-    public void setPlayers(ArrayList<LobbyPlayerModel> players) {
+    public void setPlayers(ArrayList<GamePlayer> players) {
         this.players = players;
         notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView lobbyPlayerName;
-        private final TextView lobbyPlayerReady;
+        private final TextView tvPlayerName;
+        private final TextView tvPlayerBet;
+        private final RecyclerView rvDice;
+        private HiddenDiceViewAdapter hiddenDiceViewAdapter;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            lobbyPlayerName = itemView.findViewById(R.id.lobbyPlayerName);
-            lobbyPlayerReady = itemView.findViewById(R.id.lobbyPlayerReady);
+            tvPlayerName = itemView.findViewById(R.id.tvPlayerName);
+            tvPlayerBet = itemView.findViewById(R.id.textViewBet);
+            rvDice = itemView.findViewById(R.id.rvPlayerDices);
+            rvDice.setLayoutManager(new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false));
+            hiddenDiceViewAdapter = new HiddenDiceViewAdapter(new ArrayList<Dice>());
+            rvDice.setAdapter(hiddenDiceViewAdapter);
         }
 
-        public TextView getLobbyPlayerName() {
-            return lobbyPlayerName;
+        public TextView getGamePlayerName() {
+            return tvPlayerName;
         }
 
-        public TextView getLobbyPlayerReady() {
-            return lobbyPlayerReady;
+        public TextView getGamePlayerBet() {
+            return tvPlayerBet;
+        }
+
+        public RecyclerView getRvDice() { return rvDice; }
+
+        public HiddenDiceViewAdapter getDiceViewAdapter() {
+            return hiddenDiceViewAdapter;
         }
     }
 
-    public LobbyPlayerViewAdapter(ArrayList<LobbyPlayerModel> players) {
+    public GamePlayerViewAdapter(ArrayList<GamePlayer> players) {
         this.players = players;
     }
 
@@ -48,14 +64,27 @@ public class LobbyPlayerViewAdapter extends RecyclerView.Adapter<LobbyPlayerView
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_view_lobby_player, parent, false);
+                .inflate(R.layout.recycler_view_game_player, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.getLobbyPlayerName().setText(players.get(position).getId());
-        holder.getLobbyPlayerReady().setText(players.get(position).getReady() ? "Ready" : "Not Ready");
+        GamePlayer player = players.get(position);
+        if (player != null) {
+            holder.getGamePlayerName().setText(player.getDice().size() > 0 ? player.getId() : "Lost");
+            Bet lastBet = player.getLastBet();
+            holder.getDiceViewAdapter().setDice(player.getDice());
+            if (lastBet == null) {
+                holder.getGamePlayerBet().setText("No bet");
+            }
+            else {
+                String betAmount = Integer.toString(lastBet.getAmount());
+                String betValue = Integer.toString(lastBet.getValue());
+                holder.getGamePlayerBet().setText(betAmount + " x " + betValue);
+            }
+
+        }
     }
 
     @Override

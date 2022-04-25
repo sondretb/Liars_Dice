@@ -10,11 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.liars_dice.R;
 import com.example.liars_dice.model.game.Dice;
-import com.example.liars_dice.model.lobby.LobbyPlayerModel;
 
 import java.util.ArrayList;
 
-public class DiceViewAdapter extends RecyclerView.Adapter<DiceViewAdapter.ViewHolder> {
+public class HiddenDiceViewAdapter extends RecyclerView.Adapter<HiddenDiceViewAdapter.ViewHolder> {
     private ArrayList<Dice> dice;
 
     public void setDice(ArrayList<Dice> dice) {
@@ -35,7 +34,7 @@ public class DiceViewAdapter extends RecyclerView.Adapter<DiceViewAdapter.ViewHo
         }
     }
 
-    public DiceViewAdapter(ArrayList<Dice> dice) {
+    public HiddenDiceViewAdapter(ArrayList<Dice> dice) {
         this.dice = dice;
     }
 

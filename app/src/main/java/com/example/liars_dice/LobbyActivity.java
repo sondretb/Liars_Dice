@@ -13,8 +13,11 @@ import android.widget.TextView;
 import com.example.liars_dice.adapters.LobbyPlayerViewAdapter;
 import com.example.liars_dice.api.LobbyAPI;
 import com.example.liars_dice.model.LobbyModel;
-import com.example.liars_dice.model.LobbyPlayerModel;
+import com.example.liars_dice.model.lobby.LobbyPlayerModel;
 import com.fasterxml.jackson.core.JsonProcessingException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -60,6 +63,17 @@ public class LobbyActivity extends AppCompatActivity implements Observer, View.O
         this.lobbyAPI.on(LobbyAPI.LobbyEvent.DISCONNECT, args -> {
             moveToMainMenu();
         });
+        this.lobbyAPI.on(LobbyAPI.LobbyEvent.READY , args -> {
+            try {
+                JSONObject data = new JSONObject(args[0].toString());
+                String id = data.getString("id");
+                moveToGame(id);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            System.out.println("READY "+args[0]);
+        });
 
         /* View stuff */
         this.gameID = findViewById(R.id.textViewLobbyID);
@@ -95,5 +109,12 @@ public class LobbyActivity extends AppCompatActivity implements Observer, View.O
     private void moveToMainMenu() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    private void moveToGame(String id) {
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
+
     }
 }
