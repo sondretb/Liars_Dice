@@ -1,5 +1,14 @@
 package com.example.liars_dice.model.game;
 
+public class GamePlayer {
+    String id;
+
+    public GamePlayer(String id) {
+        this.id = id;
+    }
+}
+
+/*
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.ThreadLocalRandom;
@@ -70,3 +79,4 @@ public class Player {
         return Collections.frequency(diceOnHand, diceInQuestion);
     }
 }
+*/
