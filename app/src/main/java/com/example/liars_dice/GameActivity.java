@@ -78,13 +78,11 @@ public class GameActivity extends AppCompatActivity implements Observer, View.On
         });
 
         this.gameAPI.on(GameAPI.Event.LOST, args -> {
-            // TODO: replace with move to lost activity
-            moveToMainMenu();
+            moveToLossScreen();
         });
 
         this.gameAPI.on(GameAPI.Event.WON, args -> {
-            // TODO: replace with move to won activity
-            moveToMainMenu();
+            moveToWinScreen();
         });
 
         /* View stuff */
@@ -173,6 +171,16 @@ public class GameActivity extends AppCompatActivity implements Observer, View.On
 
     private void moveToMainMenu() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void moveToLossScreen() {
+        Intent intent = new Intent(this, LoseActivity.class);
+        startActivity(intent);
+    }
+
+    private void moveToWinScreen() {
+        Intent intent = new Intent(this, WinActivity.class);
         startActivity(intent);
     }
 }

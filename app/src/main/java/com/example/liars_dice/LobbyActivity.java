@@ -80,7 +80,7 @@ public class LobbyActivity extends AppCompatActivity implements Observer, View.O
         this.gameID.setText("GameID: " + this.model.getId());
         this.recyclerView = findViewById(R.id.rvLobbyPlayers);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ArrayList<LobbyPlayerModel> players = new ArrayList<>(model.getPlayers().values());
+        ArrayList<LobbyPlayerModel> players = new ArrayList<LobbyPlayerModel>(model.getPlayers().values());
         this.playerAdapter = new LobbyPlayerViewAdapter(players);
         this.recyclerView.setAdapter(this.playerAdapter);
         this.readyButton = findViewById(R.id.readyButton);
