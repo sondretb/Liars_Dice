@@ -3,11 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/kosec/AndroidStudioProjects/Liars_Dice/app/src/main/res/layout/activity_game.xml" value="0.2552372808892689" />
-        <entry key="..\:/Users/kosec/AndroidStudioProjects/Liars_Dice/app/src/main/res/layout/activity_lobby.xml" value="0.33" />
+        <entry key="..\:/Liars_Dice/Liars_Dice/app/src/main/res/font-v26/dice_font.xml" value="0.3020833333333333" />
+        <entry key="..\:/Liars_Dice/Liars_Dice/app/src/main/res/font/dice_font.xml" value="0.3020833333333333" />
+        <entry key="..\:/Liars_Dice/Liars_Dice/app/src/main/res/layout/activity_game.xml" value="0.25" />
+        <entry key="..\:/Liars_Dice/Liars_Dice/app/src/main/res/layout/activity_lobby.xml" value="0.22" />
+        <entry key="..\:/Liars_Dice/Liars_Dice/app/src/main/res/layout/activity_lose.xml" value="0.33" />
+        <entry key="..\:/Liars_Dice/Liars_Dice/app/src/main/res/layout/activity_main.xml" value="0.11911231884057971" />
+        <entry key="..\:/Liars_Dice/Liars_Dice/app/src/main/res/layout/activity_win.xml" value="0.1707193515704154" />
+        <entry key="..\:/Liars_Dice/Liars_Dice/app/src/main/res/layout/lose_screen.xml" value="0.1480978260869565" />
+        <entry key="..\:/Liars_Dice/Liars_Dice/app/src/main/res/layout/recycler_view_dice.xml" value="0.5" />
+        <entry key="..\:/Liars_Dice/Liars_Dice/app/src/main/res/layout/recycler_view_game_player.xml" value="0.33" />
+        <entry key="..\:/Liars_Dice/Liars_Dice/app/src/main/res/layout/recycler_view_item.xml" value="0.11911231884057971" />
+        <entry key="..\:/Liars_Dice/Liars_Dice/app/src/main/res/layout/recycler_view_lobby_player.xml" value="0.33" />
+        <entry key="..\:/Liars_Dice/Liars_Dice/app/src/main/res/layout/win_screen.xml" value="0.2" />
         <entry key="..\:/Users/kosec/AndroidStudioProjects/Liars_Dice/app/src/main/res/layout/activity_main.xml" value="0.31145833333333334" />
-        <entry key="..\:/Users/kosec/AndroidStudioProjects/Liars_Dice/app/src/main/res/layout/lobby.xml" value="0.16029143897996356" />
-        <entry key="..\:/Users/kosec/AndroidStudioProjects/Liars_Dice/app/src/main/res/layout/recycler_view_item.xml" value="0.4247506799637353" />
         <entry key="..\:/Users/sondr/AndroidStudioProjects/Liars_Dice/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1805" />
         <entry key="..\:/Users/sondr/AndroidStudioProjects/Liars_Dice/app/src/main/res/layout/activity_main.xml" value="0.22" />
       </map>

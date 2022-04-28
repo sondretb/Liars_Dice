@@ -1,27 +1,31 @@
 package com.example.liars_dice.model.game;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Bet {
-    private int betValue;
-    private int betAmount;
+    private int value;
+    private int amount;
 
-    public Bet(int betValue, int betAmount) {
-        this.betValue = betValue;
-        this.betAmount = betAmount;
+    public Bet(
+            @JsonProperty("value") int value,
+            @JsonProperty("amount") int amount) {
+        this.value = value;
+        this.amount = amount;
     }
 
-    public int getBetValue() {
-        return betValue;
+    public int getValue() {
+        return value;
     }
 
-    public void setBetValue(int betValue) {
-        this.betValue = betValue;
+    public void setValue(int value) {
+        this.value = value;
     }
 
-    public int getBetAmount() {
-        return betAmount;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setBetAmount(int betAmount) {
-        this.betAmount = betAmount;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

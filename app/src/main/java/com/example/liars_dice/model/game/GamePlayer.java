@@ -1,5 +1,44 @@
 package com.example.liars_dice.model.game;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
+
+public class GamePlayer {
+    String id;
+    ArrayList<Dice> dice;
+    Bet lastBet;
+
+    public GamePlayer(String id) {
+        this.id = id;
+        this.dice = new ArrayList<Dice>();
+        this.lastBet = null;
+    }
+
+    public GamePlayer(
+            @JsonProperty("id") String id,
+            @JsonProperty("dice") ArrayList<Dice> dice,
+            @JsonProperty("lastBet") Bet bet
+    ) {
+        this.id = id;
+        this.dice = dice;
+        this.lastBet = bet;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public ArrayList<Dice> getDice() {
+        return dice;
+    }
+
+    public Bet getLastBet() {
+        return lastBet;
+    }
+}
+
+/*
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.ThreadLocalRandom;
@@ -70,3 +109,4 @@ public class Player {
         return Collections.frequency(diceOnHand, diceInQuestion);
     }
 }
+*/

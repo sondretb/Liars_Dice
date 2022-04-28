@@ -22,12 +22,18 @@ public class LobbyManagerAPI {
     }
 
     public void connect() {
+        System.out.println("CONNECTING!!!");
         try {
+            System.out.println("TRYING!!!");
             socket = IO.socket("http://10.0.2.2:3000/lobbies");
+            System.out.println("DONE TRYING!!!");
         } catch (URISyntaxException e) {
+            System.out.println("ERROR!!!");
             e.printStackTrace();
         }
+        System.out.println("CONNECTING FOR REALZ!!!");
         socket.connect();
+        System.out.println("DONE CONNECTING FOR REALZ!!!");
     }
 
 

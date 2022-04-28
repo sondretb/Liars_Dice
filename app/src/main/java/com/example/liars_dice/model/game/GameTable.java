@@ -1,7 +1,7 @@
 package com.example.liars_dice.model.game;
 
 import java.util.ArrayList;
-
+/*
 public class GameTable {
     private ArrayList<Player> players;
     private int turnIndex;
@@ -58,3 +58,4 @@ public class GameTable {
         }
     }
 }
+*/

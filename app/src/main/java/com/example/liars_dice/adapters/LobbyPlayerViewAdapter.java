@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.liars_dice.R;
-import com.example.liars_dice.model.LobbyPlayerModel;
+import com.example.liars_dice.model.lobby.LobbyPlayerModel;
 
 import java.util.ArrayList;
 
@@ -48,7 +48,7 @@ public class LobbyPlayerViewAdapter extends RecyclerView.Adapter<LobbyPlayerView
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_view_item, parent, false);
+                .inflate(R.layout.recycler_view_lobby_player, parent, false);
         return new ViewHolder(view);
     }
 

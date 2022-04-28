@@ -1,5 +1,6 @@
 package com.example.liars_dice.model;
 
+import com.example.liars_dice.model.lobby.LobbyPlayerModel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +17,10 @@ public class LobbyModel extends Observable {
         this.players = new HashMap<String, LobbyPlayerModel>();
     }
 
-    public LobbyModel(@JsonProperty("id") String id, @JsonProperty("players") HashMap<String, LobbyPlayerModel> players) {
+    public LobbyModel(
+        @JsonProperty("id") String id,
+        @JsonProperty("players") HashMap<String, LobbyPlayerModel> players
+    ) {
         this.id = id;
         this.players = players;
     }
@@ -41,8 +45,7 @@ public class LobbyModel extends Observable {
         notifyObservers();
     }
 
-    public void setLobbyModel(LobbyModel lobbyModel) {
-        System.out.println("SETTING LOBBY MODEL: "+lobbyModel.getId() + " " + lobbyModel.getPlayers().toString());
+    public void setLobbyModel(LobbyModel lobbyModel) {;
         this.id = lobbyModel.getId();
         this.players = lobbyModel.getPlayers();
         setChanged();

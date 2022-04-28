@@ -11,7 +11,8 @@ public class LobbyAPI {
 
     public enum LobbyEvent {
         UPDATE("lobby:update"),
-        DISCONNECT("disconnect");
+        DISCONNECT("disconnect"),
+        READY("lobby:ready");
 
         private final String text;
 

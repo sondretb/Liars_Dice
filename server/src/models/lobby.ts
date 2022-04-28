@@ -1,5 +1,6 @@
-import { Namespace, Server, Socket } from "socket.io";
-import { LobbyPlayer } from "./lobbyPlayer";
+import { Namespace, Server } from "socket.io";
+import { GameManager } from "./gameManager";
+import { LobbyPlayer } from "./lobby/player";
 
 const MAX_PLAYERS = 5;
 
@@ -8,11 +9,13 @@ export class Lobby {
     private id: string;
     private nsp: Namespace;
     private players: Map<string, LobbyPlayer>;
+    private gameManager: GameManager;
 
     constructor(io: Server, id: string) {
         this.io = io;
         this.id = id;
         this.players = new Map<string, LobbyPlayer>();
+        this.gameManager = GameManager.getInstance(io);
         this.nsp = this.io.of(`/lobbies/${this.id}`);
         this.nsp.on("connect", socket => {
             console.log(socket.id, " connected")
@@ -32,6 +35,11 @@ export class Lobby {
                     if (player != undefined) {
                         player.toggleReady();
                         this.emitState();
+                        const allPlayersReady = [...this.players.values()].every((player) => player.getReady()); 
+                        if (this.players.size > 1 && allPlayersReady) {
+                            const id = this.gameManager.createGame(this.players.size);
+                            this.nsp.emit("lobby:ready", {id: id});
+                        }
                     }
                 })
             }
@@ -48,8 +56,7 @@ export class Lobby {
 
     private emitState() {
         console.log("sending state");
-        const lobbyNSP = this.io.of(`/lobbies/${this.id}`)
-        lobbyNSP.emit("lobby:update", {
+        this.nsp.emit("lobby:update", {
             id: this.id,
             players: Object.fromEntries(this.players),
         })
