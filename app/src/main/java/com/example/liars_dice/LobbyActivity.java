@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -91,6 +92,10 @@ public class LobbyActivity extends AppCompatActivity implements Observer, View.O
     public void onClick(View view) {
         switch (view.getId()) {
             case (R.id.readyButton) :
+                /*Sound*/
+                final MediaPlayer mp = MediaPlayer.create(this, R.raw.roll_dice);
+                mp.start();
+
                 this.lobbyAPI.toggleReady();
                 break;
         }
@@ -112,6 +117,7 @@ public class LobbyActivity extends AppCompatActivity implements Observer, View.O
     }
 
     private void moveToGame(String id) {
+
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("id", id);
         startActivity(intent);
