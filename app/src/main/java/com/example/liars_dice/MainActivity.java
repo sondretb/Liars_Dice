@@ -8,6 +8,9 @@ import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements Observer, View.On
     private Button joinLobbyButton;
     private Button createLobbyButton;
     private EditText editTextGameID;
+    private ImageView gameIDInfoIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,11 @@ public class MainActivity extends AppCompatActivity implements Observer, View.On
 
         this.editTextGameID = findViewById(R.id.editTextGameID);
         this.editTextGameID.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
+
+        this.gameIDInfoIcon = findViewById(R.id.GameIDInfo);
+        this.gameIDInfoIcon.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -102,6 +111,10 @@ public class MainActivity extends AppCompatActivity implements Observer, View.On
 
                 }
                 break;
+            case (R.id.GameIDInfo):
+                CharSequence gameIfInfoMessage = "Enter the Game ID of an exiting game and press \"Join Lobby\"";
+                Toast gameIDInfoToast = Toast.makeText(this, gameIfInfoMessage, Toast.LENGTH_LONG);
+                gameIDInfoToast.show();
             }
 
 
