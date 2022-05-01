@@ -1,5 +1,5 @@
 # Liars_Dice
-To correctly run the app you must use an Android 22 Lolipop API.
+To correctly run the app you must use an Android 22 Lollipop API or later.
 You'll need two emulators to play the game. (Subject to change if we add a developer mode with fake players)
 
 It is adviced to have Ndm and NodeJs installed.
