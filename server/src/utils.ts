@@ -1,4 +1,3 @@
-
 export function createID(): string {
     let id = "";
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -7,4 +6,17 @@ export function createID(): string {
         id += characters[charIndex];
     }
     return id;
+}
+
+export function createUniqueID(currentIDs: Map<string, unknown>) {
+    let id = createID();
+    while (currentIDs.has(id)){
+        id = createID();
+    }
+    return id;
+}
+
+export interface Result<Data = undefined> {
+    data?: Data;
+    error?: string;
 }
