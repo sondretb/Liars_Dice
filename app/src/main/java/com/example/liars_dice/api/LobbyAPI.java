@@ -10,9 +10,10 @@ public class LobbyAPI {
     private static LobbyAPI INSTANCE = null;
 
     public enum LobbyEvent {
-        UPDATE("lobby:update"),
+        UPDATE("lobby:state:update"),
         DISCONNECT("disconnect"),
-        READY("lobby:ready");
+        READY("lobby:ready:toggle"),
+        ALLREADY("lobby:game:start");
 
         private final String text;
 
@@ -54,6 +55,6 @@ public class LobbyAPI {
     }
 
     public void toggleReady() {
-        this.socket.emit("lobby:toggleReady");
+        this.socket.emit("lobby:ready:toggle");
     }
 }

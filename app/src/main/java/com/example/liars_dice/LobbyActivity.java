@@ -54,18 +54,22 @@ public class LobbyActivity extends AppCompatActivity implements Observer, View.O
         this.lobbyAPI.connect(model.getId());
         this.lobbyAPI.on(LobbyAPI.LobbyEvent.UPDATE, args -> {
             try {
-                LobbyModel lobbyModel = LobbyModel.fromJSON(args[0].toString());
+                JSONObject data = new JSONObject(args[0].toString()).getJSONObject("data");
+                LobbyModel lobbyModel = LobbyModel.fromJSON(data.toString());
                 this.model.setLobbyModel(lobbyModel);
-            } catch (JsonProcessingException e) {
+            } catch (JsonProcessingException | JSONException e) {
                 e.printStackTrace();
             }
         });
         this.lobbyAPI.on(LobbyAPI.LobbyEvent.DISCONNECT, args -> {
             moveToMainMenu();
         });
-        this.lobbyAPI.on(LobbyAPI.LobbyEvent.READY , args -> {
+        this.lobbyAPI.on(LobbyAPI.LobbyEvent.ALLREADY , args -> {
+            System.out.println(("ALL READY!!!"));
             try {
-                JSONObject data = new JSONObject(args[0].toString());
+                JSONObject result = new JSONObject(args[0].toString());
+                System.out.println("RESULT: " + result.toString());
+                JSONObject data = result.getJSONObject("data");
                 String id = data.getString("id");
                 moveToGame(id);
 
