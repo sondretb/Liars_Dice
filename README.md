@@ -15,20 +15,20 @@ For mac and linux: https://github.com/nvm-sh/nvm
 4. Start the emulator and vertify that the client joined the server. There should be a message in the terminal that the client joined.
 
 # Structure ##
-The client side classes are found in app/src/main/java/com/example/liars_dice
-  The activity classes are in this directory
-  /adapters contains the recyclerViewAdapters classes
-  /model contains models for the MVC pattern
-  /api contains the client APIs
+The client side classes are found in app/src/main/java/com/example/liars_dice  
+  The activity classes are in this directory  
+*  /adapters contains the recyclerViewAdapters classes  
+*  /model contains models for the MVC pattern  
+*  /api contains the client APIs  
 
-The assets and frontend layouts are found in app/src/main/res
-  /layouts contains the XLM files for the activities.
+The assets and frontend layouts are found in app/src/main/res  
+*  /layouts contains the XLM files for the activities.  
 
-The server side classes are found in server/src
-  The server instaziation and idcreation classes are in this directory
-  /apis contains the server APIs
-  /models contains the classes for the server side models
-  /services contains the classes with the different server services.
+The server side classes are found in server/src  
+*  The server instaziation and idcreation classes are in this directory  
+*  /apis contains the server APIs  
+*  /models contains the classes for the server side models  
+*  /services contains the classes with the different server services.  
   
 
 
