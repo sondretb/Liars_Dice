@@ -14,7 +14,7 @@ public class GameAPI {
 
     public enum Event {
         DISCONNECT("disconnect"),
-        UPDATE("game:update"),
+        UPDATE("game:state:update"),
         LOST("game:lost"),
         WON("game:won");
 
@@ -58,26 +58,26 @@ public class GameAPI {
         this.socket.off(event.toString(), listener);
     }
 
-    public void toggleReady() {
-        this.socket.emit("lobby:toggleReady");
-    }
-
     public String getID() {
         return this.socket.id();
     }
 
     public void bet(Integer amount, Integer value) {
+        System.out.println("API doing bet stuff");
         JSONObject data = new JSONObject();
         try {
             data.put("amount", amount);
             data.put("value", value);
+            System.out.println("API set bet data");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        this.socket.emit("game:bet",data);
+        System.out.println("API emiting bet");
+        this.socket.emit("game:action:bet",data);
     }
 
     public void call() {
-        this.socket.emit("game:call");
+        System.out.println("API emitting call");
+        this.socket.emit("game:action:call");
     }
 }

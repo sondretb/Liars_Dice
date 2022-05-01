@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import io.socket.client.Ack;
 
+
 public class MainActivity extends AppCompatActivity implements Observer, View.OnClickListener{
     /* Model */
     private MainMenuModel model;
@@ -42,7 +43,9 @@ public class MainActivity extends AppCompatActivity implements Observer, View.On
         model.addObserver(this);
         /* Get ServerAPI instance */
         this.lobbyManagerAPI = LobbyManagerAPI.getInstance();
-        this.lobbyManagerAPI.connect();
+        if (!lobbyManagerAPI.connected()) {
+            this.lobbyManagerAPI.connect();
+        }
 
         this.joinLobbyButton = findViewById(R.id.joinLobbyButton);
         this.joinLobbyButton.setOnClickListener(this);
@@ -63,20 +66,30 @@ public class MainActivity extends AppCompatActivity implements Observer, View.On
     public void onClick(View view) {
         switch (view.getId()){
             case (R.id.createLobbyButton):
+                System.out.println("create lobby button clicked");
                 if (this.lobbyManagerAPI.connected()) {
+                    System.out.println("creating lobby");
                     this.lobbyManagerAPI.create(new Ack() {
 
                         @Override
                         public void call(Object... args) {
+                            System.out.println("got callback");
+                            String error = null;
+                            String id = null;
                             try {
-                                JSONObject data = new JSONObject(args[0].toString());
-                                boolean success = data.getBoolean("success");
-                                String id = data.getJSONObject("data").getString("id");
-                                if (success) {
-                                    moveToLobby(id);
-                                }
+                                id = new JSONObject(args[0].toString())
+                                    .getJSONObject("data")
+                                    .getString("id");
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                            }
+                            if (error != null) {
+                                return;
+                            }
+                            if (id != null) {
+                                System.out.println("ID: "+id);
+                                moveToLobby(id);
                             }
                         }
                     });
@@ -90,10 +103,15 @@ public class MainActivity extends AppCompatActivity implements Observer, View.On
                         @Override
                         public void call(Object... args) {
                             try {
-                                JSONObject data = new JSONObject(args[0].toString());
-                                if (data.getBoolean("success")){
-                                    moveToLobby(id);
+                                JSONObject result = new JSONObject(args[0].toString());
+                                if (result.has("error")){
+                                    return;
                                 }
+                                if (!result.has("data")){
+                                    return;
+                                }
+                                JSONObject data = result.getJSONObject("data");
+                                moveToLobby(data.getString("id"));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

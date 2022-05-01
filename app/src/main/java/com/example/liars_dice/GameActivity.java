@@ -20,6 +20,10 @@ import com.example.liars_dice.model.game.Dice;
 import com.example.liars_dice.model.game.GamePlayer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
@@ -67,9 +71,12 @@ public class GameActivity extends AppCompatActivity implements Observer, View.On
         this.gameAPI.connect(model.getId());
         this.gameAPI.on(GameAPI.Event.UPDATE , args -> {
             try {
-                GameModel gameModel = GameModel.fromJSON(args[0].toString());
+                System.out.println("UPDATA DATA: "+args[0].toString());
+                JSONObject result = new JSONObject(args[0].toString());
+                JSONObject data = result.getJSONObject("data");
+                GameModel gameModel = GameModel.fromJSON(data.toString());
                 this.model.setGameModel(gameModel);
-            } catch (JsonProcessingException e) {
+            } catch (JsonProcessingException | JSONException e) {
                 e.printStackTrace();
             }
         });

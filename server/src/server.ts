@@ -1,12 +1,40 @@
-import {Server} from "socket.io";
-import { LobbyManager } from "./models/lobbyManager";
-import { createID } from "./utils";
+import {Namespace, Server as SocketIOServer} from "socket.io";
+import { LobbiesAPI } from "./apis/LobbiesAPI";
 
-const io = new Server();
+export class Server {
+    private static INSTANCE: Server;
+    private io: SocketIOServer;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const lobbyManager = new LobbyManager(io);
+    private constructor() {
+        this.io = new SocketIOServer();
+    }
 
-/* 3000 is the port number used by the server */
-io.listen(3000);
-console.log("Listening on 3000");
+    createNameSpace(name: string) {
+        return this.io.of(name);
+    }
+
+    deleteNameSpace(nsp: Namespace) {
+        nsp.disconnectSockets();
+        nsp.removeAllListeners();
+        this.io._nsps.delete(nsp.name);
+    }
+
+    listen(port: number) {
+        this.io.listen(port);
+    }
+
+    static getInstance(): Server {
+        if (Server.INSTANCE === undefined) {
+            Server.INSTANCE = new Server();
+        }
+        return Server.INSTANCE;
+    }
+}
+
+const server = Server.getInstance();
+const lobbiesAPI = new LobbiesAPI();
+
+server.listen(3000);
+lobbiesAPI.listen();
+
+console.log("listening on 3000")

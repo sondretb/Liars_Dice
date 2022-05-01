@@ -24,21 +24,17 @@ public class LobbyManagerAPI {
     public void connect() {
         System.out.println("CONNECTING!!!");
         try {
-            System.out.println("TRYING!!!");
             socket = IO.socket("http://10.0.2.2:3000/lobbies");
-            System.out.println("DONE TRYING!!!");
         } catch (URISyntaxException e) {
-            System.out.println("ERROR!!!");
             e.printStackTrace();
         }
-        System.out.println("CONNECTING FOR REALZ!!!");
         socket.connect();
-        System.out.println("DONE CONNECTING FOR REALZ!!!");
     }
 
 
 
     public boolean connected() {
+        if (socket == null) return false;
         return socket.connected();
     }
 
@@ -52,7 +48,7 @@ public class LobbyManagerAPI {
         if (socket.connected()) {
             JSONObject data = new JSONObject();
             try {
-                data.put("lobbyID", lobbyID);
+                data.put("id", lobbyID);
                 socket.emit("lobby:join", data, ack);
             } catch (JSONException e) {
                 e.printStackTrace();
