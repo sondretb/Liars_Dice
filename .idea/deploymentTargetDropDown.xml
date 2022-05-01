@@ -17,6 +17,15 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
+            <value value="C:\Users\kosec\.android\avd\Pixel_5_API_32.avd" />
+          </Key>
+        </deviceKey>
+      </Target>
+      <Target>
+        <type value="QUICK_BOOT_TARGET" />
+        <deviceKey>
+          <Key>
+            <type value="VIRTUAL_DEVICE_PATH" />
             <value value="C:\Users\kosec\.android\avd\Pixel_5_API_22_2.avd" />
           </Key>
         </deviceKey>
